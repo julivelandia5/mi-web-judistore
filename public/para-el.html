@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para Él | Tienda</title>
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <style>
+    /* ====== ESTILOS GLOBALES ====== */
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(180deg, #ece8ff, #f9f9ff);
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: #6541f0;
+      color: white;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .btn-carrito, .btn-volver {
+      background: white;
+      color: #6541f0;
+      padding: 8px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .btn-carrito:hover, .btn-volver:hover {
+      background: #f3efff;
+    }
+
+    main {
+      padding: 40px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #4328b7;
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+
+    /* ====== GRID DE PRODUCTOS ====== */
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .producto {
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      padding: 16px;
+      transition: 0.3s;
+    }
+
+    .producto:hover {
+      transform: translateY(-6px);
+    }
+
+    .producto img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 14px;
+      cursor: pointer;
+    }
+
+    .producto h3 {
+      margin: 14px 0 6px;
+      color: #333;
+      font-size: 1.2rem;
+    }
+
+    .descripcion {
+      color: #555;
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+
+    .precio {
+      color: #6541f0;
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+
+    .btn-agregar {
+      background: linear-gradient(90deg, #7b3eff, #b866ff);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 14px;
+      width: 100%;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .btn-agregar:hover {
+      background: linear-gradient(90deg, #5c2be0, #a04fff);
+    }
+
+    /* ====== MODAL GALERÍA ====== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.85);
+      animation: aparecer 0.3s ease;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-contenido {
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 80%;
+      max-width: 700px;
+    }
+
+    .modal-contenido img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .miniaturas {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .miniaturas img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      opacity: 0.8;
+      transition: 0.3s;
+    }
+
+    .miniaturas img:hover {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    .cerrar {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      color: white;
+      font-size: 35px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .cerrar:hover {
+      color: #ff6b6b;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href="#" class="btn-volver" onclick="window.history.back()">⬅ Volver</a>
+    <h1>👖 Sección Para Él</h1>
+    <a href="carrito.html" class="btn-carrito">🛒 Ver Carrito</a>
+  </header>
+
+  <main>
+    <h2>Jeans de Caballero</h2>
+    <div class="productos">
+
+      <!-- PRODUCTO 1 -->
+      <div class="producto">
+        <img src="images/Hombre/1.jpeg" alt="Jean caballero" onclick="abrirGaleria('Jean caballero gris oscuro')" />
+        <h3>Jean caballero gris oscuro</h3>
+        <p class="descripcion">Talla 28 | Color: Gris oscuro</p>
+        <p class="precio">$90.000</p>
+        <button class="btn-agregar" data-nombre="Jean caballero gris oscuro" data-precio="90000">Agregar al carrito 🛒</button>
+      </div>
+
+      <!-- PRODUCTO 2 -->
+      <div class="producto">
+        <img src="images/Hombre/2.jpeg" alt="Jean caballero negro" onclick="abrirGaleria('Jean caballero negro')" />
+        <h3>Jean caballero negro</h3>
+        <p class="descripcion">Talla 30 | Color: Negro</p>
+        <p class="precio">$95.000</p>
+        <button class="btn-agregar" data-nombre="Jean caballero negro" data-precio="95000">Agregar al carrito 🛒</button>
+      </div>
+
+      <!-- PRODUCTO 3 -->
+      <div class="producto">
+        <img src="images/Hombre/3.jpeg" alt="Jean azul oscuro" onclick="abrirGaleria('Jean azul oscuro')" />
+        <h3>Jean azul oscuro</h3>
+        <p class="descripcion">Talla 32 | Color: Azul oscuro</p>
+        <p class="precio">$92.000</p>
+        <button class="btn-agregar" data-nombre="Jean azul oscuro" data-precio="92000">Agregar al carrito 🛒</button>
+      </div>
+
+      <!-- PRODUCTO 4 -->
+      <div class="producto">
+        <img src="images/Hombre/4.jpeg" alt="Jean azul marino" onclick="abrirGaleria('Jean azul marino')" />
+        <h3>Jean azul marino</h3>
+        <p class="descripcion">Talla 34 | Color: Azul marino</p>
+        <p class="precio">$94.000</p>
+        <button class="btn-agregar" data-nombre="Jean azul marino" data-precio="94000">Agregar al carrito 🛒</button>
+      </div>
+
+      <!-- PRODUCTO 5 -->
+      <div class="producto">
+        <img src="images/hombre4.jpg" alt="Jean negro clásico" onclick="abrirGaleria('Jean negro clásico')" />
+        <h3>Jean negro clásico</h3>
+        <p class="descripcion">Talla 36 | Color: Negro</p>
+        <p class="precio">$93.000</p>
+        <button class="btn-agregar" data-nombre="Jean negro clásico" data-precio="93000">Agregar al carrito 🛒</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ==== MODAL GALERÍA ==== -->
+  <div id="modal" class="modal">
+    <span class="cerrar" onclick="cerrarModal()">&times;</span>
+    <div class="modal-contenido">
+      <img id="imagen-grande" src="" alt="">
+      <div class="miniaturas"></div>
+    </div>
+  </div>
+
+  <script>
+    // ==== GALERÍA DE IMÁGENES ====
+    const imagenesProductos = {
+      "Jean caballero gris oscuro": ["images/Hombre/1.jpeg", "images/Hombre/1.1.jpeg", "images/Hombre/1.1.1.jpeg"],
+      "Jean caballero negro": ["images/Hombre/2.jpeg", "images/Hombre/2.2.jpeg"],
+      "Jean azul oscuro": ["images/Hombre/3.jpeg", "images/Hombre/3.3.jpeg", "images/Hombre/3.3.3.jpeg", "images/Hombre/3.3.3.3.jpeg"],
+      "Jean azul marino": ["images/Hombre/4.jpeg", "images/Hombre/4.4.jpeg", "images/Hombre/4.4.4.jpeg"],
+      "Jean negro clásico": ["images/hombre4.jpg"]
+    };
+
+    const modal = document.getElementById("modal");
+    const imagenGrande = document.getElementById("imagen-grande");
+    const miniaturas = document.querySelector(".miniaturas");
+
+    function abrirGaleria(nombreProducto) {
+      const fotos = imagenesProductos[nombreProducto];
+      if (!fotos) return;
+      modal.style.display = "block";
+      imagenGrande.src = fotos[0];
+      miniaturas.innerHTML = "";
+      fotos.forEach(foto => {
+        const mini = document.createElement("img");
+        mini.src = foto;
+        mini.onclick = () => imagenGrande.src = foto;
+        miniaturas.appendChild(mini);
+      });
+    }
+
+    function cerrarModal() {
+      modal.style.display = "none";
+    }
+
+    window.onclick = (e) => {
+      if (e.target == modal) cerrarModal();
+    };
+
+    // ==== CARRITO ====
+    const botones = document.querySelectorAll('.btn-agregar');
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    botones.forEach((boton) => {
+      boton.addEventListener('click', () => {
+        const nombre = boton.getAttribute('data-nombre');
+        const precio = parseInt(boton.getAttribute('data-precio'));
+
+        const existente = carrito.find(item => item.nombre === nombre);
+        if (existente) {
+          alert(`${nombre} ya está en el carrito 🛒`);
+        } else {
+          carrito.push({ nombre, precio });
+          localStorage.setItem('carrito', JSON.stringify(carrito));
+          alert(`${nombre} agregado al carrito 🛒`);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

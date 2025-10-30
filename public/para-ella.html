@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para Ella | Tienda</title>
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(180deg, #fff2f8, #ffe6f0);
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: #ff69b4;
+      color: white;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .btn-carrito, .btn-volver {
+      background: white;
+      color: #ff69b4;
+      padding: 8px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .btn-carrito:hover, .btn-volver:hover {
+      background: #ffeaf4;
+    }
+
+    main {
+      padding: 40px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #d63384;
+      margin-bottom: 30px;
+      font-size: 2rem;
+    }
+
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .producto {
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      padding: 16px;
+      transition: 0.3s;
+    }
+
+    .producto:hover {
+      transform: translateY(-6px);
+    }
+
+    .producto img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      border-radius: 14px;
+      cursor: pointer;
+    }
+
+    .producto h3 {
+      margin: 14px 0 6px;
+      color: #333;
+      font-size: 1.2rem;
+    }
+
+    .descripcion {
+      color: #555;
+      font-size: 0.95rem;
+      margin-bottom: 10px;
+    }
+
+    .precio {
+      color: #d63384;
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 14px;
+    }
+
+    .btn-agregar {
+      background: linear-gradient(90deg, #ff5fa2, #ff8bc0);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 14px;
+      width: 100%;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .btn-agregar:hover {
+      background: linear-gradient(90deg, #e84f91, #ff6fb1);
+    }
+
+    /* ==== MODAL GALERÍA ==== */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.85);
+      animation: aparecer 0.3s ease;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-contenido {
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 80%;
+      max-width: 700px;
+    }
+
+    .modal-contenido img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    .miniaturas {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .miniaturas img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      opacity: 0.8;
+      transition: 0.3s;
+    }
+
+    .miniaturas img:hover {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+
+    .cerrar {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      color: white;
+      font-size: 35px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .cerrar:hover {
+      color: #ff6b6b;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <a href="#" class="btn-volver" onclick="window.history.back()">⬅ Volver</a>
+    <h1>👖 Sección Para Ella</h1>
+    <a href="carrito.html" class="btn-carrito">🛒 Ver Carrito</a>
+  </header>
+
+  <main>
+    <h2>Jeans para Mujer</h2>
+    <div class="productos">
+
+      <!-- PRODUCTOS -->
+      <div class="producto">
+        <img src="images/Mujer/1.jpeg" alt="Jean mujer azul clásico" onclick="abrirGaleria('Jean mujer azul clásico')" />
+        <h3>Jean bota ancha</h3>
+        <p class="descripcion">Talla 6 | Color: Azul clásico</p>
+        <p class="precio">$110.000</p>
+        <button class="btn-agregar" data-nombre="Jean mujer azul clásico" data-precio="110000">Agregar al carrito 🛒</button>
+      </div>
+
+      <div class="producto">
+        <img src="images/Mujer/2.jpeg" alt="Jean mujer negro" onclick="abrirGaleria('Jean mujer negro')" />
+        <h3>Jean cargo </h3>
+        <p class="descripcion">Talla 8 | Color: Negro</p>
+        <p class="precio">$110.000</p>
+        <button class="btn-agregar" data-nombre="Jean mujer negro" data-precio="110000">Agregar al carrito 🛒</button>
+      </div>
+
+      <div class="producto">
+        <img src="images/Mujer/3.jpeg" alt="Jean mujer gris" onclick="abrirGaleria('Jean mujer gris')" />
+        <h3>Jean clasico</h3>
+        <p class="descripcion">Talla 10 | Color: Negro</p>
+        <p class="precio">$95.000</p>
+        <button class="btn-agregar" data-nombre="Jean mujer gris" data-precio="95000">Agregar al carrito 🛒</button>
+      </div>
+
+      <div class="producto">
+        <img src="images/Mujer/4.jpeg" alt="Jean mujer celeste" onclick="abrirGaleria('Jean mujer celeste')" />
+        <h3>Jean clasico</h3>
+        <p class="descripcion">Talla 6 | Color: Azul oscuro</p>
+        <p class="precio">$95.000</p>
+        <button class="btn-agregar" data-nombre="Jean mujer celeste" data-precio="95000">Agregar al carrito 🛒</button>
+      </div>
+
+      <div class="producto">
+        <img src="images/Mujer/5.jpeg" alt="Jean mujer blanco" onclick="abrirGaleria('Jean mujer blanco')" />
+        <h3>Jean bota campana</h3>
+        <p class="descripcion">Talla 12 | Color: negro</p>
+        <p class="precio">$110.000</p>
+        <button class="btn-agregar" data-nombre="Jean mujer blanco" data-precio="110000">Agregar al carrito 🛒</button>
+      </div>
+
+      <div class="producto">
+        <img src="images/Mujer/6.jpeg" alt="Jean mujer azul oscuro" onclick="abrirGaleria('Jean mujer azul oscuro')" />
+        <h3>Jean mujer azul oscuro</h3>
+        <p class="descripcion">Talla 10 | Color: Azul oscuro</p>
+        <p class="precio">$90.000</p>
+        <button class="btn-agregar" data-nombre="Jean mujer azul oscuro" data-precio="90000">Agregar al carrito 🛒</button>
+      </div>
+
+      <div class="producto">
+        <img src="images/Mujer/7.jpeg" alt="Jean mujer tiro alto" onclick="abrirGaleria('Jean mujer tiro alto')" />
+        <h3>Jean mujer tiro alto</h3>
+        <p class="descripcion">Talla 6 | Color: Azul medio</p>
+        <p class="precio">$96.000</p>
+        <button class="btn-agregar" data-nombre="Jean mujer tiro alto" data-precio="96000">Agregar al carrito 🛒</button>
+      </div>
+
+      <div class="producto">
+        <img src="images/Mujer/8.jpeg" alt="Jean mujer roturas" onclick="abrirGaleria('Jean mujer roturas')" />
+        <h3>Jean mujer roturas</h3>
+        <p class="descripcion">Talla 8 | Color: Azul claro</p>
+        <p class="precio">$98.000</p>
+        <button class="btn-agregar" data-nombre="Jean mujer roturas" data-precio="98000">Agregar al carrito 🛒</button>
+      </div>
+
+      <div class="producto">
+        <img src="images/Mujer/9.jpeg" alt="Jean mujer skinny" onclick="abrirGaleria('Jean mujer skinny')" />
+        <h3>Jean mujer skinny</h3>
+        <p class="descripcion">Talla 6 | Color: Azul oscuro</p>
+        <p class="precio">$92.000</p>
+        <button class="btn-agregar" data-nombre="Jean mujer skinny" data-precio="92000">Agregar al carrito 🛒</button>
+      </div>
+
+      <div class="producto">
+        <img src="images/Mujer/10.jpeg" alt="Jean mujer clásico" onclick="abrirGaleria('Jean mujer clásico')" />
+        <h3>Jean mujer clásico</h3>
+        <p class="descripcion">Talla 8 | Color: Azul medio</p>
+        <p class="precio">$89.000</p>
+        <button class="btn-agregar" data-nombre="Jean mujer clásico" data-precio="89000">Agregar al carrito 🛒</button>
+      </div>
+
+      <div class="producto">
+        <img src="images/Mujer/11.jpeg" alt="Jean mujer negro básico" onclick="abrirGaleria('Jean mujer negro básico')" />
+        <h3>Jean mujer negro básico</h3>
+        <p class="descripcion">Talla 10 | Color: Negro</p>
+        <p class="precio">$90.000</p>
+        <button class="btn-agregar" data-nombre="Jean mujer negro básico" data-precio="90000">Agregar al carrito 🛒</button>
+      </div>
+
+      <div class="producto">
+        <img src="images/Mujer/12.jpeg" alt="Jean mujer acampanado" onclick="abrirGaleria('Jean mujer acampanado')" />
+        <h3>Jean mujer acampanado</h3>
+        <p class="descripcion">Talla 8 | Color: Azul medio</p>
+        <p class="precio">$95.000</p>
+        <button class="btn-agregar" data-nombre="Jean mujer acampanado" data-precio="95000">Agregar al carrito 🛒</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- ==== MODAL GALERÍA ==== -->
+  <div id="modal" class="modal">
+    <span class="cerrar" onclick="cerrarModal()">&times;</span>
+    <div class="modal-contenido">
+      <img id="imagen-grande" src="" alt="">
+      <div class="miniaturas"></div>
+    </div>
+  </div>
+
+  <script>
+    const imagenesProductos = {
+      "Jean mujer azul clásico": ["images/Mujer/1.jpeg", "images/Mujer/1.1.jpeg", "images/Mujer/1.1.1.jpeg"],
+      "Jean mujer negro": ["images/Mujer/2.jpeg", "images/Mujer/2.2.jpeg", "images/Mujer/2.2.2.jpeg"],
+      "Jean mujer gris": ["images/Mujer/3.jpeg", "images/Mujer/3.3.jpeg"],
+      "Jean mujer celeste": ["images/Mujer/4.jpeg", "images/Mujer/4.4.jpeg"],
+      "Jean mujer blanco": ["images/Mujer/5.jpeg"],
+      "Jean mujer azul oscuro": ["images/Mujer/6.jpeg", "images/Mujer/6.1.jpeg"],
+      "Jean mujer tiro alto": ["images/Mujer/7.jpeg", "images/Mujer/7.1.jpeg"],
+      "Jean mujer roturas": ["images/Mujer/8.jpeg", "images/Mujer/8.1.jpeg"],
+      "Jean mujer skinny": ["images/Mujer/9.jpeg", "images/Mujer/9.1.jpeg"],
+      "Jean mujer clásico": ["images/Mujer/10.jpeg"],
+      "Jean mujer negro básico": ["images/Mujer/11.jpeg", "images/Mujer/11.1.jpeg"],
+      "Jean mujer acampanado": ["images/Mujer/12.jpeg", "images/Mujer/12.1.jpeg"]
+    };
+
+    const modal = document.getElementById("modal");
+    const imagenGrande = document.getElementById("imagen-grande");
+    const miniaturas = document.querySelector(".miniaturas");
+
+    function abrirGaleria(nombreProducto) {
+      const fotos = imagenesProductos[nombreProducto];
+      if (!fotos) return;
+      modal.style.display = "block";
+      imagenGrande.src = fotos[0];
+      miniaturas.innerHTML = "";
+      fotos.forEach(foto => {
+        const mini = document.createElement("img");
+        mini.src = foto;
+        mini.onclick = () => imagenGrande.src = foto;
+        miniaturas.appendChild(mini);
+      });
+    }
+
+    function cerrarModal() {
+      modal.style.display = "none";
+    }
+
+    window.onclick = (e) => {
+      if (e.target == modal) cerrarModal();
+    };
+
+    const botones = document.querySelectorAll('.btn-agregar');
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    botones.forEach((boton) => {
+      boton.addEventListener('click', () => {
+        const nombre = boton.getAttribute('data-nombre');
+        const precio = parseInt(boton.getAttribute('data-precio'));
+
+        const existente = carrito.find(item => item.nombre === nombre);
+        if (existente) {
+          alert(`${nombre} ya está en el carrito 🛒`);
+        } else {
+          carrito.push({ nombre, precio });
+          localStorage.setItem('carrito', JSON.stringify(carrito));
+          alert(`${nombre} agregado al carrito 🛒`);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🛒 Carrito de Compras</title>
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #fefefe;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background: linear-gradient(90deg, #ff85b9, #ff4f92);
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .btn-volver {
+      background: white;
+      color: #ff4f92;
+      padding: 8px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .btn-volver:hover {
+      background: #ffe3ef;
+    }
+
+    main {
+      padding: 30px;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .carrito-item {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      padding: 15px;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .carrito-item h3 {
+      margin: 0;
+      color: #333;
+    }
+
+    .carrito-item p {
+      margin: 4px 0;
+      color: #666;
+      font-size: 14px;
+    }
+
+    .total {
+      font-size: 1.2rem;
+      text-align: right;
+      margin-top: 20px;
+      font-weight: bold;
+      color: #ff4f92;
+    }
+
+    .btn-whatsapp {
+      background: #25D366;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 20px;
+      width: 100%;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: 0.3s;
+    }
+
+    .btn-whatsapp:hover {
+      background: #1ebe5d;
+    }
+
+    .vacio {
+      text-align: center;
+      color: #888;
+      font-style: italic;
+      margin-top: 30px;
+    }
+
+    .btn-eliminar {
+      background: #ff4f4f;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 6px 10px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: 0.3s;
+    }
+
+    .btn-eliminar:hover {
+      background: #d93a3a;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="#" class="btn-volver" onclick="window.history.back()">⬅ Volver</a>
+    <h1>🛒 Tu Carrito</h1>
+  </header>
+
+  <main>
+    <div id="carrito-contenido"></div>
+    <p class="total" id="total"></p>
+    <button class="btn-whatsapp" id="btnWhatsapp">📲 Hacer pedido por WhatsApp</button>
+  </main>
+
+  <script>
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    const contenedor = document.getElementById('carrito-contenido');
+    const totalEl = document.getElementById('total');
+    const btnWhatsapp = document.getElementById('btnWhatsapp');
+
+    function renderCarrito() {
+      contenedor.innerHTML = '';
+      if (carrito.length === 0) {
+        contenedor.innerHTML = '<p class="vacio">Tu carrito está vacío 🛍️</p>';
+        totalEl.textContent = '';
+        btnWhatsapp.style.display = 'none';
+        return;
+      }
+
+      let total = 0;
+
+      carrito.forEach((item, index) => {
+        // 🔹 Asegurar que el precio sea numérico
+        const precioNumerico = parseFloat(item.precio) || 0;
+        const cantidad = item.cantidad ? parseInt(item.cantidad) : 1;
+        const subtotal = precioNumerico * cantidad;
+        total += subtotal;
+
+        const div = document.createElement('div');
+        div.classList.add('carrito-item');
+        div.innerHTML = `
+          <div>
+            <h3>${item.nombre}</h3>
+            <p>Talla: ${item.talla || 'Única'}</p>
+            <p>Cantidad: ${cantidad}</p>
+            <p>Precio: $${precioNumerico.toLocaleString()}</p>
+          </div>
+          <div style="text-align: right;">
+            <strong>$${subtotal.toLocaleString()}</strong><br>
+            <button class="btn-eliminar" onclick="eliminarProducto(${index})">🗑️ Eliminar</button>
+          </div>
+        `;
+        contenedor.appendChild(div);
+      });
+
+      totalEl.textContent = `Total: $${total.toLocaleString()}`;
+      btnWhatsapp.style.display = 'block';
+    }
+
+    function eliminarProducto(index) {
+      carrito.splice(index, 1);
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      renderCarrito();
+    }
+
+    btnWhatsapp.addEventListener('click', () => {
+      const numero = "573184660327"; // 📞 Cambia por tu número
+      let mensaje = "🛍️ *Pedido desde la tienda online*:%0A%0A";
+      let total = 0;
+
+      carrito.forEach(item => {
+        const precioNumerico = parseFloat(item.precio) || 0;
+        const cantidad = item.cantidad ? parseInt(item.cantidad) : 1;
+        const subtotal = precioNumerico * cantidad;
+        total += subtotal;
+        mensaje += `• ${item.nombre} (${item.talla || 'Única'}) x${cantidad} - $${precioNumerico.toLocaleString()}%0A`;
+      });
+
+      mensaje += `%0A💰 *Total:* $${total.toLocaleString()}`;
+      const url = `https://wa.me/${numero}?text=${mensaje}`;
+      window.open(url, "_blank");
+    });
+
+    renderCarrito();
+  </script>
+</body>
+</html>

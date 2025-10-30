@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JUDI STORE 👕✨</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* 🌸 BOTÓN FLOTANTE WHATSAPP */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25d366;
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+      z-index: 999;
+      transition: transform 0.2s ease;
+      text-decoration: none;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      background-color: #20b858;
+    }
+
+    /* 🌷 SECCIÓN PQRS */
+    .pqrs-section {
+      background-color: #fff0f6;
+      padding: 60px 0;
+      text-align: center;
+    }
+    .pqrs-section h2 {
+      color: #d63384;
+      font-weight: 700;
+    }
+    .pqrs-section p {
+      color: #333;
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+    }
+    .pqrs-section .btn-pqrs {
+      background-color: #d63384;
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    .pqrs-section .btn-pqrs:hover {
+      background-color: #c2185b;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- 🌸 NAVBAR -->
+  <nav class="navbar navbar-expand-lg shadow-sm sticky-top">
+    <div class="container">
+      <a class="navbar-brand fs-3 fw-bold" href="#">JUDI<span class="text-gradient">Store</span></a>
+      <div>
+        <a href="#nosotros" class="btn btn-outline-light btn-sm">Quiénes somos 💕</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 🌈 HERO -->
+  <section class="hero text-center text-light d-flex flex-column justify-content-center align-items-center">
+    <h1 class="display-5 fw-bold animate-fade">🛍️ Bienvenidos a <span class="text-gradient">JUDI STORE</span></h1>
+    <p class="lead mt-3">Explora nuestras colecciones y encuentra tu estilo ideal ✨</p>
+  </section>
+
+  <!-- 💎 CATEGORÍAS -->
+  <div class="container my-5">
+    <div class="row text-center">
+
+      <div class="col-md-4 mb-4">
+        <div class="card category-card" onclick="window.location.href='para-el.html'">
+          <img src="images/Hombre/3.jpeg" class="card-img-top" alt="Para él" />
+          <div class="card-body">
+            <h5>👕 <strong>Para Él</strong></h5>
+            <p>Estilo, fuerza y actitud</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="card category-card" onclick="window.location.href='para-ella.html'">
+          <img src="images/Mujer/4.jpeg" class="card-img-top" alt="Para ella" />
+          <div class="card-body">
+            <h5>👗 <strong>Para Ella</strong></h5>
+            <p>Elegancia, color y confianza</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4 mb-4">
+        <div class="card category-card" style="cursor: default;">
+          <img src="images/1.jpeg" class="card-img-top" alt="Otros productos" />
+          <div class="card-body">
+            <h5>✨ <strong>Otros productos</strong></h5>
+            <p>Accesorios y detalles únicos</p>
+          </div>
+        </div>
+      </div>
+      
+
+    </div>
+  </div>
+
+  <!-- 💌 SECCIÓN PQRS -->
+  <section class="pqrs-section">
+    <div class="container">
+      <h2>📩 PQRS - ¡Queremos escucharte!</h2>
+      <p>Estamos aquí para mejorar 💕. Tu opinión, queja o sugerencia nos ayuda a crecer y ofrecerte el mejor servicio.</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScMfSqC2Z_reO9XJG1JYiSMP2oKwAhcmotDHLhj_ljt_rVF4g/viewform?usp=dialog" target="_blank" class="btn btn-pqrs">
+        Enviar sugerencia 💬
+      </a>
+    </div>
+  </section>
+
+  <!-- 💬 QUIÉNES SOMOS -->
+  <section id="nosotros" class="about-section text-center text-light py-5">
+    <div class="container">
+      <h2 class="fw-bold mb-4">💞 Quiénes somos</h2>
+      <p class="fs-5">
+        Somos una joven pareja con ganas de emprender y construir poco a poco nuestras metas 💫.  
+        Cada prenda está pensada con amor, dedicación y estilo.  
+        Gracias por apoyar este sueño y formar parte de nuestra historia. 💕
+      </p>
+    </div>
+  </section>
+
+  <!-- 🌸 FOOTER -->
+  <footer class="footer text-center py-3 text-light">
+    © 2025 JUDI Store | Emprendimiento con amor 💖
+  </footer>
+
+  <!-- 🟢 BOTÓN FLOTANTE WHATSAPP -->
+  <a href="https://wa.me/573184660327?text=¡Hola%20JUDI%20Store!%20Tengo%20una%20duda%20👋" 
+     class="whatsapp-float" 
+     target="_blank" 
+     title="Contáctanos por WhatsApp">
+    💬
+  </a>
+
+</body>
+</html>
